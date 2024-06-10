@@ -152,10 +152,10 @@ function buyWeapon(){
             inventory.push(newWeapon);
             text.innerText += " In your inventory you have: " + inventory + " ";
         } else {
-            text.innerText = "Not enough gold, lol";
+            text.innerText = "Not enough gold, warrior.";
         }
     } else {
-        text.innerText = "Already got the master sword mah boi";
+        text.innerText = "You already have Fate's Edge, the strongest sword in all of existence! With this, slaying Acnologia is like taking candy from a baby!";
         button2.innerText = "Sell Weapon for 30 gold";
         button2.onclick = sellWeapon;
     }
@@ -166,10 +166,10 @@ function sellWeapon(){
         gold += 30;
         goldText.innerText = gold;
         let currentWeapon = inventory.shift();
-        text.innerText = "You sold a: " + weapons + ".";
+        text.innerText = "You sold a: " + currentWeapon + ".";
         text.innerText += " In your inventory you have: " + inventory;
     } else {
-        text.innerText = "You gon fight barehanded bruh?";
+        text.innerText = "Don't sell the Fate's Edge, warrior! You can't let this blade fall in the wrong hands!";
     }
 }
 
@@ -281,22 +281,24 @@ function pickEight(){
 function pick(guess){
     let numbers = [];
     while (numbers.length < 10) {
-        numbers.push(Math.floor(Math.random() * 11))
+        numbers.push(Math.floor(Math.random() * 11));
     }
 
-    text.innerText = "You picked " + guess + ". Here are the random numbers: \n"; 
+    text.innerText = "You picked " + guess + ". Here are the random numbers:\n"; 
+
     for (let i = 0; i < 10; i++) {
         text.innerText += numbers[i] + "\n";
     }
     if (numbers.indexOf(guess) !== -1) {
-        text.innerText = "You're correct! You won 20 gold!";
+        text.innerText += "You're correct! You won 20 gold!";
         gold += 20;
-        gold.innerText = gold;
+        goldText.innerText = gold;
     } else{
-        text.innerText = "Wrong! You lost 10 health!"
+        text.innerText += "Wrong! You lost 10 health!"
         health -= 10;
         healthText.innerText = health;
-        if(health <= 0){}
-        gameOver();
+        if(health <= 0){
+            gameOver();
+        }
     }
 }
